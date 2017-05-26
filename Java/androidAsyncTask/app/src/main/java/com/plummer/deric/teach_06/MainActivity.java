@@ -23,8 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
-
-    private List<String> myList;
     private ArrayAdapter<String> _aa;
 
 
@@ -33,8 +31,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        myList = new ArrayList<>();
-        _aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, myList);
+        _aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
+        ListView lv = (ListView) findViewById(R.id.listView);
+        lv.setAdapter(_aa);
 
     }
 
@@ -57,9 +56,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onClickLoad(View view) {
         LoadFileTask loadFileTask = new LoadFileTask(this, "numbers.txt", _aa, (ProgressBar) findViewById(R.id.progressBar));
         loadFileTask.execute();
-
-        ListView lv = (ListView) findViewById(R.id.listView);
-        lv.setAdapter(_aa);
         }
 
     /*********************************
